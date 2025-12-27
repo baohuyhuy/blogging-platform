@@ -23,3 +23,24 @@ export const checkPostExists = async (id) => {
 export const deletePost = async (id) => {
   await db('posts').where('id', id).delete();
 };
+
+export const getPost = async (id) => {
+  const post = await db('posts').where('id', id).first();
+  return post;
+};
+
+export const listPosts = async (term) => {
+  if (term) {
+    return await db('posts')
+      .select('*')
+      .where('title', 'ilike', `%${term}%`)
+      .orWhere('content', 'ilike', `%${term}%`)
+      .orWhere('category', 'ilike', `%${term}%`)
+      .orderBy('created_at', 'desc')
+      .orderBy('id', 'desc');
+  }
+  return await db('posts')
+    .select('*')
+    .orderBy('created_at', 'desc')
+    .orderBy('id', 'desc');
+};

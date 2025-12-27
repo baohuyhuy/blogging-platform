@@ -44,3 +44,21 @@ export const deletePostSchema = z.object({
       .positive(),
   }),
 });
+
+export const getPostSchema = z.object({
+  params: z.object({
+    id: z.coerce
+      .number({
+        invalid_type_error: 'Post ID must be a number',
+        required_error: 'Post ID is required',
+      })
+      .int()
+      .positive(),
+  }),
+});
+
+export const listPostsSchema = z.object({
+  query: z.object({
+    term: z.string().optional(),
+  }),
+});
