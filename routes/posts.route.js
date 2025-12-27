@@ -9,6 +9,7 @@ import {
   createPostController,
   updatePostController,
   deletePostController,
+  // getPostController,
 } from '../controllers/posts.controller.js';
 
 const router = Router();

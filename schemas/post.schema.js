@@ -23,12 +23,24 @@ export const updatePostSchema = z.object({
     tags: z.array(z.string()).default([]).optional(),
   }),
   params: z.object({
-    id: z.string().regex(/^\d+$/, 'Post ID must be a number').transform(Number),
+    id: z.coerce
+      .number({
+        invalid_type_error: 'Post ID must be a number',
+        required_error: 'Post ID is required',
+      })
+      .int()
+      .positive(),
   }),
 });
 
 export const deletePostSchema = z.object({
   params: z.object({
-    id: z.string().regex(/^\d+$/, 'Post ID must be a number').transform(Number),
+    id: z.coerce
+      .number({
+        invalid_type_error: 'Post ID must be a number',
+        required_error: 'Post ID is required',
+      })
+      .int()
+      .positive(),
   }),
 });
