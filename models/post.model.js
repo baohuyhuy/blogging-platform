@@ -19,3 +19,7 @@ export const checkPostExists = async (id) => {
   const post = await db('posts').where('id', id).first();
   return !!post;
 };
+
+export const deletePost = async (id) => {
+  await db('posts').where('id', id).delete();
+};

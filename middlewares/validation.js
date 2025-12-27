@@ -9,7 +9,7 @@ export const validate = (schema) => {
       if (error instanceof z.ZodError) {
         return res.status(400).json({
           status: 'fail',
-          errors: z.treeifyError(error),
+          ...z.treeifyError(error),
         });
       }
       next(error);

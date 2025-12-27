@@ -23,6 +23,12 @@ export const updatePostSchema = z.object({
     tags: z.array(z.string()).default([]).optional(),
   }),
   params: z.object({
-    id: z.string().regex(/^\d+$/, 'ID must be a number').transform(Number),
+    id: z.string().regex(/^\d+$/, 'Post ID must be a number').transform(Number),
+  }),
+});
+
+export const deletePostSchema = z.object({
+  params: z.object({
+    id: z.string().regex(/^\d+$/, 'Post ID must be a number').transform(Number),
   }),
 });
